@@ -12,9 +12,136 @@ namespace Client
 {
     public partial class frmMain : Form
     {
+        private List<Person> persons;
+        private List<Seminar> seminars;
+
+        private void CreateDB()
+        {
+            this.persons = new List<Person>()
+            {
+                new Person()
+                {
+                    Id = "1",
+                    Name = "Petro",
+                    Age = "28"
+                },
+                new Person()
+                {
+                    Id = "2",
+                    Name = "Vasya",
+                    Age = "28"
+                },
+                new Person()
+                {
+                    Id = "3",
+                    Name = "Vova",
+                    Age = "38"
+                }
+            };
+
+            this.seminars = new List<Seminar>()
+            {
+                new Seminar()
+                {
+                    ID = "1",
+                    Name = "C#"
+                },
+                new Seminar()
+                {
+                    ID = "2",
+                    Name = "ASP.NET"
+                }
+            };
+        }
+
+        private void ShowPersons()
+        {
+            lvShowPersons.Items.Clear();
+            ListViewItem[] items = new ListViewItem[persons.Count];
+
+            for (int i = 0, len = items.Length; i < len; i++)
+            {
+                ListViewItem item = new ListViewItem();
+                item.SubItems.Add(persons[i].Id);
+                item.SubItems.Add(persons[i].Name);
+                item.SubItems.Add(persons[i].Age);
+                items[i] = item;
+            }
+            lvShowPersons.Items.AddRange(items);
+        }
+
+        private void OnInit()
+        {
+            TreeNode[] semNodes = new TreeNode[seminars.Count];
+
+            for (int i = 0, len = semNodes.Length; i < len; i++)
+            {
+                semNodes[i] = new TreeNode(seminars[i].Name, 0, 0);
+            }
+
+
+            tvSeminars.Nodes.Add(new TreeNode("Семінари", 0, 0, semNodes));
+            
+
+            tvSeminars.CollapseAll();
+
+            lvShowPersons.Columns.Add("", -2, HorizontalAlignment.Left);
+            lvShowPersons.Columns.Add("Name");//, -2, HorizontalAlignment.Left);
+            lvShowPersons.Columns.Add("Zip");//, -2, HorizontalAlignment.Left);
+            lvShowPersons.Columns.Add("Tax");//, -2, HorizontalAlignment.Left);
+
+            // Set the view to show details.
+            lvShowPersons.View = View.Details;
+            
+            lvShowPersons.FullRowSelect = true;
+            // Display grid lines.
+            lvShowPersons.GridLines = true;
+
+            lvShowPersons.LabelEdit = true;
+            // Allow the user to rearrange columns.
+            lvShowPersons.AllowColumnReorder = true;
+            // Display check boxes.
+            lvShowPersons.CheckBoxes = true;
+            // Select the item and subitems when selection is made.
+            lvShowPersons.FullRowSelect = true;
+            // Display grid lines.
+            lvShowPersons.GridLines = true;
+        }
+
         public frmMain()
         {
+            CreateDB();
             InitializeComponent();
+            OnInit();
+
+            lvShowPersons.SelectedIndexChanged += lvShowPersons_SelectedIndexChanged;
+        }
+
+        void lvShowPersons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection breakfast =
+            this.lvShowPersons.SelectedItems;
+
+            string s = string.Empty;
+
+            foreach (ListViewItem item in breakfast)
+            {
+                s += String.Format("{3}ID: {0}{3}Name: {1}{3}Age: {2}{3}", 
+                    item.SubItems[1].Text, item.SubItems[2].Text, item.SubItems[3].Text,Environment.NewLine);
+            }
+
+            txShowDetailPerson.Text = s;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tvSeminars_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Node.Parent == null)
+                ShowPersons();
         }
     }
 }
