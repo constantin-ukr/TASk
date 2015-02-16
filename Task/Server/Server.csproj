@@ -47,12 +47,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{6c2ebd88-a521-4f4f-bded-791dde07454b}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{cbd3018d-52ca-4be3-9d4b-7c7ec41a0337}</Project>
+      <Name>DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\T3Service\T3Service.csproj">
       <Project>{0cd46a62-d231-4830-af53-410be42a29ba}</Project>
