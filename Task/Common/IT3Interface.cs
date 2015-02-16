@@ -25,6 +25,15 @@ namespace Common
         void RemovePersons(List<Person> remPersons);
 
         [OperationContract]
-        void UpdatePersons(List<Person> updPersons);
+        void UpdatePersons(List<Person> newPersons, List<Person> oldPersons);
+
+        [OperationContract]
+        void AddAssociationSem_Per(Seminar sem, List<Person> persons);
+
+        [OperationContract]
+        void AddAssociationPer_Sem(Person person, List<Seminar> seminars);
+
+        [OperationContract]
+        void RemoveAssociationPer_Sem(Person person, List<Seminar> seminars);
     }
 }
