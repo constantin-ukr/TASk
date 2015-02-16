@@ -49,6 +49,10 @@
       <Project>{6c2ebd88-a521-4f4f-bded-791dde07454b}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{cbd3018d-52ca-4be3-9d4b-7c7ec41a0337}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
