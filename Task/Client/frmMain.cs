@@ -136,12 +136,75 @@ namespace Client
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
+                DataT3Service.T3InterfaceClient client;
+                client = new DataT3Service.T3InterfaceClient();
+
+                List<DataT3Service.Seminar> listSeminars = client.GetSeminars();
+
+                TreeNode[] trees = new TreeNode[listSeminars.Count];
+
+                for(int i=0, len=listSeminars.Count; i < len; i++)
+                {
+                    trees[i] = new TreeNode(listSeminars[i].Name);
+                }
+
+                tvSeminars.Nodes.AddRange(trees);
         }
 
         private void tvSeminars_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Parent == null)
                 ShowPersons();
+        }
+
+        private void tvSeminars_NodeMouseHover(object sender, TreeNodeMouseHoverEventArgs e)
+        {
+            //e.Node.ForeColor = System.Drawing.Color.DarkGreen;
+           
+        }
+
+        private void lvShowPersons_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void lvShowPersons_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void tvSeminars_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void tvSeminars_DragDrop(object sender, DragEventArgs e)
+        {
+            var items = e.Data.GetData("System.Windows.Forms.ListView+SelectedListViewItemCollection") as ListView.SelectedListViewItemCollection;
+            
+            TreeNode parentNode = this.tvSeminars.GetNodeAt(this.tvSeminars.PointToClient(new Point(e.X, e.Y)));
+            
+            if (items == null || parentNode.Level != 1)
+            {
+                return;
+            }
+
+			// Начинаем обработку каждого элемента в кtvSeminarsоллекции
+            foreach (ListViewItem item in items)
+            {
+                TreeNode node = new TreeNode(item.SubItems[1].Text);
+                parentNode.Nodes.Add(node);
+            }
+
+
+
+            //	item.ListView.Items.Remove(item);	// Так как мы перетаскиваем из одного листа в другой, то элемент сначала надо удалить из "родительского" листа
+			//	listView.Items.Add(item);  
+        }
+
+        private void lvShowPersons_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            lvShowPersons.DoDragDrop(lvShowPersons.SelectedItems, DragDropEffects.Move);
         }
     }
 }

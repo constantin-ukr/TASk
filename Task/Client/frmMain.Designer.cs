@@ -31,22 +31,24 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.tvSeminars = new System.Windows.Forms.TreeView();
+            this.imgTV = new System.Windows.Forms.ImageList(this.components);
             this.lvShowPersons = new System.Windows.Forms.ListView();
+            this.imgIcon = new System.Windows.Forms.ImageList(this.components);
             this.txShowDetailPerson = new System.Windows.Forms.TextBox();
             this.grbxToolbar = new System.Windows.Forms.GroupBox();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.imgListToolbar = new System.Windows.Forms.ImageList(this.components);
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.imgListToolbar = new System.Windows.Forms.ImageList(this.components);
-            this.imgIcon = new System.Windows.Forms.ImageList(this.components);
-            this.imgTV = new System.Windows.Forms.ImageList(this.components);
             this.grbxToolbar.SuspendLayout();
             this.SuspendLayout();
             // 
             // tvSeminars
             // 
+            this.tvSeminars.AllowDrop = true;
             this.tvSeminars.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.tvSeminars.HotTracking = true;
             this.tvSeminars.ImageIndex = 0;
             this.tvSeminars.ImageList = this.imgTV;
             this.tvSeminars.Location = new System.Drawing.Point(3, 70);
@@ -54,10 +56,21 @@
             this.tvSeminars.SelectedImageIndex = 0;
             this.tvSeminars.Size = new System.Drawing.Size(278, 328);
             this.tvSeminars.TabIndex = 0;
+            this.tvSeminars.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.tvSeminars_NodeMouseHover);
             this.tvSeminars.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvSeminars_NodeMouseClick);
+            this.tvSeminars.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvSeminars_DragDrop);
+            this.tvSeminars.DragEnter += new System.Windows.Forms.DragEventHandler(this.tvSeminars_DragEnter);
+            // 
+            // imgTV
+            // 
+            this.imgTV.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTV.ImageStream")));
+            this.imgTV.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgTV.Images.SetKeyName(0, "seminar.png");
+            this.imgTV.Images.SetKeyName(1, "people.png");
             // 
             // lvShowPersons
             // 
+            this.lvShowPersons.AllowDrop = true;
             this.lvShowPersons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvShowPersons.LargeImageList = this.imgIcon;
@@ -68,6 +81,16 @@
             this.lvShowPersons.StateImageList = this.imgIcon;
             this.lvShowPersons.TabIndex = 1;
             this.lvShowPersons.UseCompatibleStateImageBehavior = false;
+            this.lvShowPersons.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvShowPersons_ItemDrag);
+            this.lvShowPersons.DragOver += new System.Windows.Forms.DragEventHandler(this.lvShowPersons_DragOver);
+            this.lvShowPersons.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvShowPersons_MouseMove);
+            // 
+            // imgIcon
+            // 
+            this.imgIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgIcon.ImageStream")));
+            this.imgIcon.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgIcon.Images.SetKeyName(0, "people.png");
+            this.imgIcon.Images.SetKeyName(1, "people.png");
             // 
             // txShowDetailPerson
             // 
@@ -99,6 +122,14 @@
             this.btnDelete.TabIndex = 6;
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
+            // imgListToolbar
+            // 
+            this.imgListToolbar.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgListToolbar.ImageStream")));
+            this.imgListToolbar.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgListToolbar.Images.SetKeyName(0, "add.png");
+            this.imgListToolbar.Images.SetKeyName(1, "edit.png");
+            this.imgListToolbar.Images.SetKeyName(2, "delete.jpg");
+            // 
             // btnUpdate
             // 
             this.btnUpdate.ImageIndex = 1;
@@ -121,28 +152,6 @@
             this.btnAdd.Tag = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // imgListToolbar
-            // 
-            this.imgListToolbar.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgListToolbar.ImageStream")));
-            this.imgListToolbar.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgListToolbar.Images.SetKeyName(0, "add.png");
-            this.imgListToolbar.Images.SetKeyName(1, "edit.png");
-            this.imgListToolbar.Images.SetKeyName(2, "delete.jpg");
-            // 
-            // imgIcon
-            // 
-            this.imgIcon.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgIcon.ImageStream")));
-            this.imgIcon.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgIcon.Images.SetKeyName(0, "people.png");
-            this.imgIcon.Images.SetKeyName(1, "people.png");
-            // 
-            // imgTV
-            // 
-            this.imgTV.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgTV.ImageStream")));
-            this.imgTV.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgTV.Images.SetKeyName(0, "seminar.png");
-            this.imgTV.Images.SetKeyName(1, "people.png");
             // 
             // frmMain
             // 
