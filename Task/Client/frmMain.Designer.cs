@@ -40,7 +40,12 @@
             this.imgListToolbar = new System.Windows.Forms.ImageList(this.components);
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tsslSelectSeminar = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnAbout = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
             this.grbxToolbar.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tvSeminars
@@ -54,10 +59,11 @@
             this.tvSeminars.Location = new System.Drawing.Point(3, 70);
             this.tvSeminars.Name = "tvSeminars";
             this.tvSeminars.SelectedImageIndex = 0;
-            this.tvSeminars.Size = new System.Drawing.Size(278, 328);
+            this.tvSeminars.Size = new System.Drawing.Size(278, 364);
             this.tvSeminars.TabIndex = 0;
-            this.tvSeminars.NodeMouseHover += new System.Windows.Forms.TreeNodeMouseHoverEventHandler(this.tvSeminars_NodeMouseHover);
+            this.tvSeminars.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.tvSeminars_BeforeExpand);
             this.tvSeminars.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvSeminars_NodeMouseClick);
+            this.tvSeminars.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.tvSeminars_NodeMouseDoubleClick);
             this.tvSeminars.DragDrop += new System.Windows.Forms.DragEventHandler(this.tvSeminars_DragDrop);
             this.tvSeminars.DragEnter += new System.Windows.Forms.DragEventHandler(this.tvSeminars_DragEnter);
             // 
@@ -74,16 +80,15 @@
             this.lvShowPersons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lvShowPersons.LargeImageList = this.imgIcon;
-            this.lvShowPersons.Location = new System.Drawing.Point(287, 70);
+            this.lvShowPersons.Location = new System.Drawing.Point(285, 70);
             this.lvShowPersons.Name = "lvShowPersons";
-            this.lvShowPersons.Size = new System.Drawing.Size(352, 160);
+            this.lvShowPersons.Size = new System.Drawing.Size(352, 209);
             this.lvShowPersons.SmallImageList = this.imgIcon;
             this.lvShowPersons.StateImageList = this.imgIcon;
             this.lvShowPersons.TabIndex = 1;
             this.lvShowPersons.UseCompatibleStateImageBehavior = false;
             this.lvShowPersons.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvShowPersons_ItemDrag);
             this.lvShowPersons.DragOver += new System.Windows.Forms.DragEventHandler(this.lvShowPersons_DragOver);
-            this.lvShowPersons.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lvShowPersons_MouseMove);
             // 
             // imgIcon
             // 
@@ -95,10 +100,10 @@
             // txShowDetailPerson
             // 
             this.txShowDetailPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txShowDetailPerson.Location = new System.Drawing.Point(287, 236);
+            this.txShowDetailPerson.Location = new System.Drawing.Point(287, 285);
             this.txShowDetailPerson.Multiline = true;
             this.txShowDetailPerson.Name = "txShowDetailPerson";
-            this.txShowDetailPerson.Size = new System.Drawing.Size(352, 162);
+            this.txShowDetailPerson.Size = new System.Drawing.Size(352, 149);
             this.txShowDetailPerson.TabIndex = 2;
             // 
             // grbxToolbar
@@ -116,11 +121,12 @@
             // 
             this.btnDelete.ImageIndex = 2;
             this.btnDelete.ImageList = this.imgListToolbar;
-            this.btnDelete.Location = new System.Drawing.Point(122, 17);
+            this.btnDelete.Location = new System.Drawing.Point(122, 12);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(52, 42);
             this.btnDelete.TabIndex = 6;
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // imgListToolbar
             // 
@@ -134,37 +140,80 @@
             // 
             this.btnUpdate.ImageIndex = 1;
             this.btnUpdate.ImageList = this.imgListToolbar;
-            this.btnUpdate.Location = new System.Drawing.Point(64, 17);
+            this.btnUpdate.Location = new System.Drawing.Point(64, 12);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(52, 37);
+            this.btnUpdate.Size = new System.Drawing.Size(52, 42);
             this.btnUpdate.TabIndex = 7;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
             this.btnAdd.AccessibleDescription = "Add";
             this.btnAdd.ImageIndex = 0;
             this.btnAdd.ImageList = this.imgListToolbar;
-            this.btnAdd.Location = new System.Drawing.Point(6, 17);
+            this.btnAdd.Location = new System.Drawing.Point(6, 12);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(52, 37);
+            this.btnAdd.Size = new System.Drawing.Size(52, 42);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Tag = "Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsslSelectSeminar});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 437);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(649, 22);
+            this.statusStrip1.TabIndex = 4;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tsslSelectSeminar
+            // 
+            this.tsslSelectSeminar.Name = "tsslSelectSeminar";
+            this.tsslSelectSeminar.Size = new System.Drawing.Size(115, 17);
+            this.tsslSelectSeminar.Text = "Вибраний семінар: ";
+            // 
+            // btnAbout
+            // 
+            this.btnAbout.Location = new System.Drawing.Point(525, 16);
+            this.btnAbout.Name = "btnAbout";
+            this.btnAbout.Size = new System.Drawing.Size(53, 42);
+            this.btnAbout.TabIndex = 5;
+            this.btnAbout.Text = "About";
+            this.btnAbout.UseVisualStyleBackColor = true;
+            this.btnAbout.Click += new System.EventHandler(this.btnAbout_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Location = new System.Drawing.Point(584, 16);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(53, 42);
+            this.btnSettings.TabIndex = 6;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 410);
+            this.ClientSize = new System.Drawing.Size(649, 459);
+            this.Controls.Add(this.btnSettings);
+            this.Controls.Add(this.btnAbout);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.grbxToolbar);
             this.Controls.Add(this.txShowDetailPerson);
             this.Controls.Add(this.lvShowPersons);
             this.Controls.Add(this.tvSeminars);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.grbxToolbar.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,5 +231,9 @@
         private System.Windows.Forms.ImageList imgListToolbar;
         private System.Windows.Forms.ImageList imgIcon;
         private System.Windows.Forms.ImageList imgTV;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tsslSelectSeminar;
+        private System.Windows.Forms.Button btnAbout;
+        private System.Windows.Forms.Button btnSettings;
     }
 }

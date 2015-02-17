@@ -56,9 +56,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\..\T3\Task\Common\Common.csproj">
       <Project>{6c2ebd88-a521-4f4f-bded-791dde07454b}</Project>
       <Name>Common</Name>

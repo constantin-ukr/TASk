@@ -13,8 +13,12 @@ namespace DataAccess
 {
     public static class DAL
     {
-        private static Provider.Provider _provider = new Provider.Provider();        
-        
+        private static Provider.Provider _provider = new Provider.Provider();
+        private static string _connString;
+        static DAL()
+        {
+            _connString = Provider.Provider.DbConnection.ConnectionString;
+        }
         public static List<Person> GetPersonsForSeminar(int seminarID)
         {
             string query = String.Format(
@@ -24,12 +28,12 @@ namespace DataAccess
 
             List<Person> persons = new List<Person>();
 
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {                
-                IDbCommand sqlCom = _provider.DbCommand;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
                 sqlCom.CommandText = query;
                 sqlCom.Connection = sqlCon;
-
+                sqlCom.Connection.ConnectionString = _connString;
                 try
                 {                    
                     sqlCon.Open();
@@ -41,12 +45,21 @@ namespace DataAccess
                         Person person = new Person();
                         person.ID = sdr.GetInt32(0);
                         person.Name = sdr.GetString(1);
-                        person.Birthday = Convert.ToDateTime(sdr.GetString(2));
-                        person.Address = sdr.GetString(3);
-                        person.Zip = sdr.GetString(4);
-                        person.City = sdr.GetString(5);
-                        person.Tax = sdr.GetString(6);
-                        person.Memo = sdr.GetString(4);
+                        bool date = sdr.IsDBNull(2);
+
+                        if (!sdr.IsDBNull(2))
+                        {
+                            person.Birthday = Convert.ToDateTime(sdr.GetString(2));
+                        }
+                        else
+                        {
+                            person.Birthday = null;
+                        }
+                        person.Address = !sdr.IsDBNull(3) ? sdr.GetString(3) : null;
+                        person.Zip = !sdr.IsDBNull(4) ? sdr.GetString(4) : null;
+                        person.City = !sdr.IsDBNull(5) ? sdr.GetString(5) : null;
+                        person.Tax = !sdr.IsDBNull(6) ? sdr.GetString(6) : null;
+                        person.Memo = !sdr.IsDBNull(7) ? sdr.GetString(7) : null;
                         persons.Add(person);
                     }
                 }
@@ -63,6 +76,47 @@ namespace DataAccess
             return persons;
         }
 
+        public static int GetID()
+        {
+            string query = "Select Max(ID) from Person;";
+
+            int maxID = 0; 
+
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
+            {
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
+                sqlCom.CommandText = query;
+                sqlCom.Connection = sqlCon;
+
+                sqlCom.Connection.ConnectionString = _connString;
+                try
+                {
+                    sqlCon.Open();
+
+                    //IDataReader sdr =
+                     maxID = Convert.ToInt32(sqlCom.ExecuteScalar());// ExecuteReader();
+
+                    /*while (sdr.Read())
+                    {
+                        maxID = sdr.GetInt32(0);
+                    }*/
+                }
+                catch (Exception ex)
+                {
+                    //_service.ShowError(ex.Message + "\n" + ex.Source);
+                    //string message = ex.Message;
+                }
+                finally
+                {
+                    if (sqlCon.State == ConnectionState.Open)
+                        sqlCon.Close();
+                }
+            }
+
+            return maxID;
+        }
+
+
         public static List<Seminar> GetSeminarsForPerson(int personID)
         {
             string query = String.Format(
@@ -71,12 +125,12 @@ namespace DataAccess
 
             List<Seminar> seminars = new List<Seminar>();
 
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
                 sqlCom.CommandText = query;
                 sqlCom.Connection = sqlCon;
-
+                sqlCom.Connection.ConnectionString = _connString;
                 try
                 {
                     sqlCon.Open();
@@ -115,12 +169,13 @@ namespace DataAccess
 
             query = "SELECT [ID], [Name] FROM [Seminar] ORDER BY [Name];";
                         
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
                 sqlCom.CommandText = query;
                 sqlCom.Connection = sqlCon;
 
+                sqlCom.Connection.ConnectionString = _connString;
                 try
                 {
                     sqlCon.Open();
@@ -140,6 +195,7 @@ namespace DataAccess
                 catch (Exception ex)
                 {
                     //_service.ShowError(ex.Message + "\n" + ex.Source);
+                    string message = ex.Message;
                 }
                 finally
                 {
@@ -161,12 +217,13 @@ namespace DataAccess
 
             query = "SELECT [ID], [Name], [BirthDate], [Address], [Zip], [City], [Tax],	[Memo] FROM Person ORDER BY [Name];";
             
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
                 sqlCom.CommandText = query;
                 sqlCom.Connection = sqlCon;
-
+                                
+                sqlCom.Connection.ConnectionString = _connString;
                 try
                 {
                     sqlCon.Open();
@@ -178,12 +235,10 @@ namespace DataAccess
                         Person person = new Person();
                         person.ID = sdr.GetInt32(0);
                         person.Name = sdr.GetString(1);
-
-                        bool date = sdr.IsDBNull(2); 
-                            
+                                                                            
                         if (!sdr.IsDBNull(2))
                         {
-                            person.Birthday = Convert.ToDateTime(sdr.GetString(2));
+                            person.Birthday = Convert.ToDateTime(sdr.GetDateTime(2));
                         }
                         else
                         {
@@ -212,19 +267,23 @@ namespace DataAccess
             return persons;            
         }
 
-        public static void AddAssociationSemToPer(string semName, string listId)
+        public static void AddAssociationSemToPer(string semName, int[] pID)
         {
+            StringBuilder query = new StringBuilder();
+            for (int i = 0, len = pID.Length; i < len; i++)
+			{
+			    query.Append(String.Format("insert into [QualRef](SemID,PerID )  select distinct (select ID from Seminar where Name = '{0}') as SemID, {1} " +
+                    "from [QualRef] where (select Count(PerID) from [QualRef] where [SemID] = (select ID from Seminar where Name = '{0}') and PerID = {1}) = 0; ",
+                    semName, pID[i]));
+			}
+            
 
-            string query = String.Format(
-                "insert into [QualRef](SemID,PerID ) select (select ID from Seminar where Name = '{0}') as SemID,PerID " +
-                "from [QualRef] where [SemID] = (select ID from Seminar where Name = '{0}') and PerID not in ({1}})",
-                semName, listId);
-
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
-                sqlCom.CommandText = query;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
+                sqlCom.CommandText = query.ToString();
                 sqlCom.Connection = sqlCon;
+                sqlCom.Connection.ConnectionString = _connString;
 
                 try
                 {
@@ -249,20 +308,21 @@ namespace DataAccess
         {
             string query = String.Format(
                 "INSERT INTO [Person]([Name],[BirthDate],[Address],[Zip],[City],[Tax],[Memo]) " +
-                "VALUES ('{0}',{1},'{2}','{3}','{4}','{5}','{6}');",
+                "VALUES ('{0}',convert(datetime,'{1}',103),'{2}','{3}','{4}','{5}','{6}');",
                 person.Name, person.Birthday, person.Address, person.Zip,person.City, person.Tax, person.Memo);
             
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
                 sqlCom.CommandText = query;
                 sqlCom.Connection = sqlCon;
+                sqlCom.Connection.ConnectionString = _connString;
 
                 try
                 {
                     sqlCon.Open();
 
-                    sqlCom.ExecuteNonQuery();
+                    sqlCom.ExecuteNonQuery();                    
                 }
                 catch (Exception ex)
                 {
@@ -283,9 +343,9 @@ namespace DataAccess
                 "delete from [Person] where ID = {0};",
                 person.ID);
 
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
                 sqlCom.CommandText = query;
                 sqlCom.Connection = sqlCon;
 
@@ -315,12 +375,12 @@ namespace DataAccess
                 newPerson.Name, newPerson.Birthday, newPerson.Address, newPerson.Zip, newPerson.City, newPerson.Tax,
                 newPerson.Memo,newPerson.ID);
 
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
                 sqlCom.CommandText = query;
                 sqlCom.Connection = sqlCon;
-
+                sqlCom.Connection.ConnectionString = _connString;
                 try
                 {
                     sqlCon.Open();
@@ -339,19 +399,26 @@ namespace DataAccess
             }
         }
 
-        public static void AddAssociationPerToSem(int pID, string listId)
+        public static void AddAssociationPerToSem(int pID, int[] sID)
         {
-            string query = String.Format(
-               "insert into [QualRef](PerID, SemID) select {0} as PerID,  " +
-               "from [QualRef] where [SemID] = (select ID from Seminar where Name = '{0}') and PerID not in ({1}})",
-               pID, listId);
 
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            StringBuilder query = new StringBuilder();
+            for (int i = 0, len = sID.Length; i < len; i++)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
-                sqlCom.CommandText = query;
-                sqlCom.Connection = sqlCon;
+                query.Append(
+                    String.Format("insert into [QualRef](PerID, SemID) " +
+                    "select distinct {0}, {1} from QUALREF " +
+                    "where (select Count(SemID) from QUALREF " +
+                    "where PerID = {0}  and SemID = {1}) = 0 ;",
+                    pID, sID[i]));
+            }
 
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
+            {
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
+                sqlCom.CommandText = query.ToString();
+                sqlCom.Connection = sqlCon;
+                sqlCom.Connection.ConnectionString = _connString;
                 try
                 {
                     sqlCon.Open();
@@ -370,18 +437,21 @@ namespace DataAccess
             }
         }
 
-        public static void DeleteAssociationPerToSem(int pID, string listId)
+        public static void DeleteAssociationPerToSem(int pID, int[] sID)
         {
-            string query = String.Format(
-               "delete from [QualRef] where PerId= {0} and SemID in ({1});",
-               pID, listId);
-
-            using (IDbConnection sqlCon = _provider.DbConnection)
+            StringBuilder query = new StringBuilder();
+            for (int i = 0, len = sID.Length; i < len; i++)
             {
-                IDbCommand sqlCom = _provider.DbCommand;
-                sqlCom.CommandText = query;
-                sqlCom.Connection = sqlCon;
+                query.Append(
+                    String.Format("delete from [QualRef] where PerId= {0} and SemID = {1};", pID, sID[i]));
+            }
 
+            using (IDbConnection sqlCon = Provider.Provider.DbConnection)
+            {
+                IDbCommand sqlCom = Provider.Provider.DbCommand;
+                sqlCom.CommandText = query.ToString();
+                sqlCom.Connection = sqlCon;
+                sqlCom.Connection.ConnectionString = _connString;
                 try
                 {
                     sqlCon.Open();

@@ -172,6 +172,82 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_GetPersonsForSeminar_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_GetPersonsForSeminar_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_GetSeminarsForPerson_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_GetSeminarsForPerson_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_AddPersons_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -286,6 +362,158 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_AddAssociationSem_Per_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_AddAssociationSem_Per_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_AddAssociationPer_Sem_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_AddAssociationPer_Sem_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_RemoveAssociationPer_Sem_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_RemoveAssociationPer_Sem_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_IsRun_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IT3Interface_IsRun_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:5000/T3Service/MEX?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -305,6 +533,18 @@
   <wsdl:message name="IT3Interface_GetPersons_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPersonsResponse" />
   </wsdl:message>
+  <wsdl:message name="IT3Interface_GetPersonsForSeminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonsForSeminar" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_GetPersonsForSeminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPersonsForSeminarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_GetSeminarsForPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeminarsForPerson" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_GetSeminarsForPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSeminarsForPersonResponse" />
+  </wsdl:message>
   <wsdl:message name="IT3Interface_AddPersons_InputMessage">
     <wsdl:part name="parameters" element="tns:AddPersons" />
   </wsdl:message>
@@ -323,6 +563,30 @@
   <wsdl:message name="IT3Interface_UpdatePersons_OutputMessage">
     <wsdl:part name="parameters" element="tns:UpdatePersonsResponse" />
   </wsdl:message>
+  <wsdl:message name="IT3Interface_AddAssociationSem_Per_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssociationSem_Per" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_AddAssociationSem_Per_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssociationSem_PerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_AddAssociationPer_Sem_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssociationPer_Sem" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_AddAssociationPer_Sem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddAssociationPer_SemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_RemoveAssociationPer_Sem_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAssociationPer_Sem" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_RemoveAssociationPer_Sem_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAssociationPer_SemResponse" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_IsRun_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsRun" />
+  </wsdl:message>
+  <wsdl:message name="IT3Interface_IsRun_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsRunResponse" />
+  </wsdl:message>
   <wsdl:portType name="IT3Interface">
     <wsdl:operation name="GetSeminars">
       <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/GetSeminars" message="tns:IT3Interface_GetSeminars_InputMessage" />
@@ -331,6 +595,14 @@
     <wsdl:operation name="GetPersons">
       <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/GetPersons" message="tns:IT3Interface_GetPersons_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/GetPersonsResponse" message="tns:IT3Interface_GetPersons_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsForSeminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/GetPersonsForSeminar" message="tns:IT3Interface_GetPersonsForSeminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/GetPersonsForSeminarResponse" message="tns:IT3Interface_GetPersonsForSeminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSeminarsForPerson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/GetSeminarsForPerson" message="tns:IT3Interface_GetSeminarsForPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/GetSeminarsForPersonResponse" message="tns:IT3Interface_GetSeminarsForPerson_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="AddPersons">
       <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/AddPersons" message="tns:IT3Interface_AddPersons_InputMessage" />
@@ -343,6 +615,22 @@
     <wsdl:operation name="UpdatePersons">
       <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/UpdatePersons" message="tns:IT3Interface_UpdatePersons_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/UpdatePersonsResponse" message="tns:IT3Interface_UpdatePersons_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAssociationSem_Per">
+      <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/AddAssociationSem_Per" message="tns:IT3Interface_AddAssociationSem_Per_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/AddAssociationSem_PerResponse" message="tns:IT3Interface_AddAssociationSem_Per_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddAssociationPer_Sem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/AddAssociationPer_Sem" message="tns:IT3Interface_AddAssociationPer_Sem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/AddAssociationPer_SemResponse" message="tns:IT3Interface_AddAssociationPer_Sem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAssociationPer_Sem">
+      <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/RemoveAssociationPer_Sem" message="tns:IT3Interface_RemoveAssociationPer_Sem_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/RemoveAssociationPer_SemResponse" message="tns:IT3Interface_RemoveAssociationPer_Sem_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsRun">
+      <wsdl:input wsaw:Action="http://tempuri.org/IT3Interface/IsRun" message="tns:IT3Interface_IsRun_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IT3Interface/IsRunResponse" message="tns:IT3Interface_IsRun_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IT3Interface" type="tns:IT3Interface">
@@ -367,6 +655,28 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_GetPersons_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPersonsForSeminar">
+      <soap12:operation soapAction="http://tempuri.org/IT3Interface/GetPersonsForSeminar" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_GetPersonsForSeminar_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_GetPersonsForSeminar_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSeminarsForPerson">
+      <soap12:operation soapAction="http://tempuri.org/IT3Interface/GetSeminarsForPerson" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_GetSeminarsForPerson_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_GetSeminarsForPerson_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -400,6 +710,50 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_UpdatePersons_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAssociationSem_Per">
+      <soap12:operation soapAction="http://tempuri.org/IT3Interface/AddAssociationSem_Per" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_AddAssociationSem_Per_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_AddAssociationSem_Per_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddAssociationPer_Sem">
+      <soap12:operation soapAction="http://tempuri.org/IT3Interface/AddAssociationPer_Sem" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_AddAssociationPer_Sem_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_AddAssociationPer_Sem_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAssociationPer_Sem">
+      <soap12:operation soapAction="http://tempuri.org/IT3Interface/RemoveAssociationPer_Sem" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_RemoveAssociationPer_Sem_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_RemoveAssociationPer_Sem_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsRun">
+      <soap12:operation soapAction="http://tempuri.org/IT3Interface/IsRun" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_IsRun_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IT3Interface_IsRun_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

@@ -25,10 +25,38 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetPersonsForSeminar">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="seminar" nillable="true" type="q3:Seminar" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPersonsForSeminarResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="GetPersonsForSeminarResult" nillable="true" type="q4:ArrayOfPerson" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSeminarsForPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="person" nillable="true" type="q5:Person" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSeminarsForPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="GetSeminarsForPersonResult" nillable="true" type="q6:ArrayOfSeminar" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddPersons">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="newPersons" nillable="true" type="q3:ArrayOfPerson" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="newPersons" nillable="true" type="q7:ArrayOfPerson" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -40,7 +68,7 @@
   <xs:element name="RemovePersons">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="remPersons" nillable="true" type="q4:ArrayOfPerson" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="remPersons" nillable="true" type="q8:ArrayOfPerson" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -52,13 +80,65 @@
   <xs:element name="UpdatePersons">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="updPersons" nillable="true" type="q5:ArrayOfPerson" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="newPersons" nillable="true" type="q9:ArrayOfPerson" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="oldPersons" nillable="true" type="q10:ArrayOfPerson" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdatePersonsResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAssociationSem_Per">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="sem" nillable="true" type="q11:Seminar" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="persons" nillable="true" type="q12:ArrayOfPerson" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAssociationSem_PerResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAssociationPer_Sem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="person" nillable="true" type="q13:Person" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="seminars" nillable="true" type="q14:ArrayOfSeminar" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddAssociationPer_SemResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAssociationPer_Sem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="person" nillable="true" type="q15:Person" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Common" minOccurs="0" name="seminars" nillable="true" type="q16:ArrayOfSeminar" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveAssociationPer_SemResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsRun">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsRunResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsRunResult" type="xs:boolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

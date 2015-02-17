@@ -241,6 +241,12 @@ namespace Client.DataT3Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/GetPersons", ReplyAction="http://tempuri.org/IT3Interface/GetPersonsResponse")]
         System.Collections.Generic.List<Client.DataT3Service.Person> GetPersons();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/GetPersonsForSeminar", ReplyAction="http://tempuri.org/IT3Interface/GetPersonsForSeminarResponse")]
+        System.Collections.Generic.List<Client.DataT3Service.Person> GetPersonsForSeminar(Client.DataT3Service.Seminar seminar);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/GetSeminarsForPerson", ReplyAction="http://tempuri.org/IT3Interface/GetSeminarsForPersonResponse")]
+        System.Collections.Generic.List<Client.DataT3Service.Seminar> GetSeminarsForPerson(Client.DataT3Service.Person person);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/AddPersons", ReplyAction="http://tempuri.org/IT3Interface/AddPersonsResponse")]
         void AddPersons(System.Collections.Generic.List<Client.DataT3Service.Person> newPersons);
         
@@ -248,7 +254,19 @@ namespace Client.DataT3Service {
         void RemovePersons(System.Collections.Generic.List<Client.DataT3Service.Person> remPersons);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/UpdatePersons", ReplyAction="http://tempuri.org/IT3Interface/UpdatePersonsResponse")]
-        void UpdatePersons(System.Collections.Generic.List<Client.DataT3Service.Person> updPersons);
+        void UpdatePersons(System.Collections.Generic.List<Client.DataT3Service.Person> newPersons, System.Collections.Generic.List<Client.DataT3Service.Person> oldPersons);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/AddAssociationSem_Per", ReplyAction="http://tempuri.org/IT3Interface/AddAssociationSem_PerResponse")]
+        void AddAssociationSem_Per(Client.DataT3Service.Seminar sem, System.Collections.Generic.List<Client.DataT3Service.Person> persons);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/AddAssociationPer_Sem", ReplyAction="http://tempuri.org/IT3Interface/AddAssociationPer_SemResponse")]
+        void AddAssociationPer_Sem(Client.DataT3Service.Person person, System.Collections.Generic.List<Client.DataT3Service.Seminar> seminars);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/RemoveAssociationPer_Sem", ReplyAction="http://tempuri.org/IT3Interface/RemoveAssociationPer_SemResponse")]
+        void RemoveAssociationPer_Sem(Client.DataT3Service.Person person, System.Collections.Generic.List<Client.DataT3Service.Seminar> seminars);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IT3Interface/IsRun", ReplyAction="http://tempuri.org/IT3Interface/IsRunResponse")]
+        bool IsRun();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -286,6 +304,14 @@ namespace Client.DataT3Service {
             return base.Channel.GetPersons();
         }
         
+        public System.Collections.Generic.List<Client.DataT3Service.Person> GetPersonsForSeminar(Client.DataT3Service.Seminar seminar) {
+            return base.Channel.GetPersonsForSeminar(seminar);
+        }
+        
+        public System.Collections.Generic.List<Client.DataT3Service.Seminar> GetSeminarsForPerson(Client.DataT3Service.Person person) {
+            return base.Channel.GetSeminarsForPerson(person);
+        }
+        
         public void AddPersons(System.Collections.Generic.List<Client.DataT3Service.Person> newPersons) {
             base.Channel.AddPersons(newPersons);
         }
@@ -294,8 +320,24 @@ namespace Client.DataT3Service {
             base.Channel.RemovePersons(remPersons);
         }
         
-        public void UpdatePersons(System.Collections.Generic.List<Client.DataT3Service.Person> updPersons) {
-            base.Channel.UpdatePersons(updPersons);
+        public void UpdatePersons(System.Collections.Generic.List<Client.DataT3Service.Person> newPersons, System.Collections.Generic.List<Client.DataT3Service.Person> oldPersons) {
+            base.Channel.UpdatePersons(newPersons, oldPersons);
+        }
+        
+        public void AddAssociationSem_Per(Client.DataT3Service.Seminar sem, System.Collections.Generic.List<Client.DataT3Service.Person> persons) {
+            base.Channel.AddAssociationSem_Per(sem, persons);
+        }
+        
+        public void AddAssociationPer_Sem(Client.DataT3Service.Person person, System.Collections.Generic.List<Client.DataT3Service.Seminar> seminars) {
+            base.Channel.AddAssociationPer_Sem(person, seminars);
+        }
+        
+        public void RemoveAssociationPer_Sem(Client.DataT3Service.Person person, System.Collections.Generic.List<Client.DataT3Service.Seminar> seminars) {
+            base.Channel.RemoveAssociationPer_Sem(person, seminars);
+        }
+        
+        public bool IsRun() {
+            return base.Channel.IsRun();
         }
     }
 }

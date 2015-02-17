@@ -94,13 +94,24 @@ namespace T3Service
         /// <param name="persons">Типізований список лекторів</param>
         public void AddAssociationSem_Per(Seminar sem, List<Person> persons)
         {
-            StringBuilder IDs = new StringBuilder();
-            for (int i = 0, len = persons.Count; i < len; i++)
+            int[] pID;
+
+            if (persons.Count == 1 && persons[0].ID == 0)
             {
-                IDs.Append(persons[i].ID + ", ");
+                pID = new int[1];
+                pID[0] = DAL.GetID();
+            }
+            else
+            {
+                pID = new int[persons.Count];
             }
 
-            DAL.AddAssociationSemToPer(sem.Name, IDs.Remove(IDs.Length-1, 1).ToString());
+            for (int i = 0, len = persons.Count; i < len; i++)
+            {
+                pID[i] = persons[i].ID;
+            }
+
+            DAL.AddAssociationSemToPer(sem.Name, pID);
         }
 
         /// <summary>
@@ -110,14 +121,15 @@ namespace T3Service
         /// <param name="seminars">Типізований список семінарів</param>
         public void AddAssociationPer_Sem(Person person, List<Seminar> seminars)
         {
-            StringBuilder IDs = new StringBuilder();
+            int[] sID = new int[seminars.Count];
+
             for (int i = 0, len = seminars.Count; i < len; i++)
             {
-                
-                IDs.Append(seminars[i].ID + ", ");
+
+                sID[i] = seminars[i].ID;
             }
 
-            DAL.AddAssociationPerToSem(person.ID, IDs.Remove(IDs.Length - 1, 1).ToString());
+            DAL.AddAssociationPerToSem(person.ID, sID);
         }
 
         /// <summary>
@@ -127,13 +139,36 @@ namespace T3Service
         /// <param name="seminars">Типізований список семінарів</param>
         public void RemoveAssociationPer_Sem(Person person, List<Seminar> seminars)
         {
-            StringBuilder IDs = new StringBuilder();
+            int[] sID = new int[seminars.Count];
+
             for (int i = 0, len = seminars.Count; i < len; i++)
             {
-                IDs.Append(seminars[i].ID + ", ");
+
+                sID[i] = seminars[i].ID;
             }
 
-            DAL.DeleteAssociationPerToSem(person.ID, IDs.Remove(IDs.Length - 1, 1).ToString());
+            DAL.DeleteAssociationPerToSem(person.ID, sID);
+        }
+
+        /// <summary>
+        /// Перевірка стану запуску сервера
+        /// </summary>
+        /// <returns>Запущений сервер, true.</returns>
+        public bool IsRun()
+        {
+            //if()
+            return true;
+        }
+
+
+        public List<Person> GetPersonsForSeminar(Seminar seminar)
+        {
+            return DAL.GetPersonsForSeminar(seminar.ID);
+        }
+
+        public List<Seminar> GetSeminarsForPerson(Person person)
+        {
+            return DAL.GetSeminarsForPerson(person.ID);
         }
     }
 }

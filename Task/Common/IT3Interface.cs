@@ -19,6 +19,12 @@ namespace Common
         List<Person> GetPersons();
 
         [OperationContract]
+        List<Person> GetPersonsForSeminar(Seminar seminar);
+
+        [OperationContract]
+        List<Seminar> GetSeminarsForPerson(Person person);
+
+        [OperationContract]
         void AddPersons(List<Person> newPersons);
 
         [OperationContract]
@@ -35,5 +41,9 @@ namespace Common
 
         [OperationContract]
         void RemoveAssociationPer_Sem(Person person, List<Seminar> seminars);
+
+        [OperationContract]
+        bool IsRun();
+
     }
 }
